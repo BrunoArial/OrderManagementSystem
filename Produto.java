@@ -1,44 +1,44 @@
 import java.math.BigDecimal;
 
 public class Produto {
-    private int IdProduto;
-    private String NomeProduto;
-    private BigDecimal Preco;
-    private int Estoque;
+    private int idProduto;
+    private String nomeProduto;
+    private BigDecimal preco;
+    private int estoque;
 
     public Produto(int idProduto, String nomeProduto, BigDecimal preco, int estoque) {
-        this.IdProduto = idProduto;
-        this.NomeProduto = nomeProduto;
-        this.Preco = preco;
-        this.Estoque = estoque;
+        this.idProduto = idProduto;
+        this.nomeProduto = nomeProduto;
+        this.preco = preco;
+        this.estoque = estoque;
     }
 
     int getIdProduto() {
-        return this.IdProduto;
+        return this.idProduto;
     }
 
     String getNomeProduto() {
-        return this.NomeProduto;
+        return this.nomeProduto;
     }
 
     BigDecimal getPreco() {
-        return this.Preco;
+        return this.preco;
     }
 
     int getEstoque() {
-        return this.Estoque;
+        return this.estoque;
     }
-    
+
     public void mostrarProduto() {
         System.out.println("DADOS DO PRODUTO:");
-        System.out.println("ID: " + this.IdProduto);
-        System.out.println("NOME: " + this.NomeProduto);
-        System.out.println("PREÇO: " + this.Preco);
-        System.out.println("ESTOQUE: " + this.Estoque);
+        System.out.println("ID: " + this.idProduto);
+        System.out.println("NOME: " + this.nomeProduto);
+        System.out.println("PREÇO: " + this.preco);
+        System.out.println("ESTOQUE: " + this.estoque);
     }
 
     public void reduzirEstoque(int quantidade) {
-        this.Estoque = this.Estoque - quantidade;
+        this.estoque = this.estoque - quantidade;
         mostrarProduto();
     }
 }
