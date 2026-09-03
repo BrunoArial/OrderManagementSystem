@@ -8,6 +8,7 @@ public class Main {
         Cliente cliente = new Cliente("Bruno", "brunoarial@gmail.com", 1);
         Pedido pedido = new Pedido(cliente, "P001", "Item 1, Item 2", "Em andamento", "2023-10-01");
         Produto produto = new Produto(1, "Produto A", new BigDecimal("19.99"), 10);
+        ItemPedido itemPedido = new ItemPedido(produto);
         boolean deuErro = false;
         int quantidade = 0;
         
@@ -51,6 +52,8 @@ public class Main {
         produto.reduzirEstoque(quantidade);
         
         System.out.println();
+
+        itemPedido.infoItemPedido(quantidade);
 
         scanner.close();
     }
