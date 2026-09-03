@@ -28,15 +28,7 @@ public class Produto {
     int getEstoque() {
         return this.Estoque;
     }
-
-    String setNomeProduto(String NomeProduto) {
-        return this.NomeProduto;
-    }
-
-    BigDecimal setPreco(BigDecimal Preco) {
-        return this.Preco;
-    }
-
+    
     public void mostrarProduto() {
         System.out.println("DADOS DO PRODUTO:");
         System.out.println("ID: " + this.IdProduto);
