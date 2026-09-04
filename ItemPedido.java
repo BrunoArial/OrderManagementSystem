@@ -1,18 +1,25 @@
 import java.math.BigDecimal;
 
 public class ItemPedido {
-    Produto produto;
-    int quantidadePedido;
-    BigDecimal subtotal;
 
-     public ItemPedido (Produto produto, int quantidadePedido) {
+    private Produto produto;
+    private int quantidadePedido;
+
+    public ItemPedido(Produto produto, int quantidadePedido) {
         this.produto = produto;
         this.quantidadePedido = quantidadePedido;
     }
 
-    public void infoItemPedido(Produto produto) {
-        subtotal = produto.getPreco().multiply(BigDecimal.valueOf(produto.itemPedido.quantidadePedido));
-        System.out.println("QUANTIDADE PEDIDO: " + produto.itemPedido.quantidadePedido);
-        System.out.println("SUBTOTAL: " +  subtotal);
+    public BigDecimal calcularSubtotal() {
+
+        return produto.getPreco()
+                .multiply(BigDecimal.valueOf(quantidadePedido));
+    }
+
+    public void infoItemPedido() {
+
+        System.out.println("PRODUTO: " + produto.getNomeProduto());
+        System.out.println("QUANTIDADE: " + quantidadePedido);
+        System.out.println("SUBTOTAL: " + calcularSubtotal());
     }
 }
