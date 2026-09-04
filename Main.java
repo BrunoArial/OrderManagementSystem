@@ -7,6 +7,17 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+        
+        Cliente cliente = new Cliente(
+            "Bruno", 
+            "brunoarial@gmail.com", 
+            1); 
+
+        Pedido pedido = new Pedido(
+            cliente, 
+            "P001", 
+            "Em andamento", 
+            "09/09/2026");
 
         Produto produto = new Produto(
                 1,
@@ -48,6 +59,12 @@ public class Main {
 
         System.out.println();
         System.out.println("Estoque restante: " + produto.getEstoque());
+
+        ItemPedido itemPedido = new ItemPedido(produto, quantidade);
+        itemPedido.infoItemPedido();
+
+        pedido.adicionarItens(itemPedido);
+        System.out.println("QUANTIDADE DE ITENS NO PEDIDO: " + pedido.getQuantidadeDeItens());
 
         scanner.close();
     }

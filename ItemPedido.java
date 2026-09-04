@@ -1,7 +1,6 @@
 import java.math.BigDecimal;
 
 public class ItemPedido {
-
     private Produto produto;
     private int quantidadePedido;
 
