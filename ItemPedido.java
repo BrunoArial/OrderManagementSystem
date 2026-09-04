@@ -5,15 +5,14 @@ public class ItemPedido {
     int quantidadePedido;
     BigDecimal subtotal;
 
-     public ItemPedido (Produto produto) {
+     public ItemPedido (Produto produto, int quantidadePedido) {
         this.produto = produto;
+        this.quantidadePedido = quantidadePedido;
     }
 
-    public void infoItemPedido(int quantidade) {
-        quantidadePedido = quantidade;
-        subtotal = produto.getPreco().multiply(BigDecimal.valueOf(quantidadePedido));
-
-        System.out.println(quantidadePedido);
-        System.out.println(subtotal);
+    public void infoItemPedido(Produto produto) {
+        subtotal = produto.getPreco().multiply(BigDecimal.valueOf(produto.itemPedido.quantidadePedido));
+        System.out.println("QUANTIDADE PEDIDO: " + produto.itemPedido.quantidadePedido);
+        System.out.println("SUBTOTAL: " +  subtotal);
     }
 }
