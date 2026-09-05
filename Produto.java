@@ -1,7 +1,6 @@
 import java.math.BigDecimal;
 
 public class Produto {
-
     private int idProduto;
     private String nomeProduto;
     private BigDecimal preco;
