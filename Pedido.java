@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Pedido {
@@ -24,7 +25,16 @@ public class Pedido {
 
     void mostrarItem() {
         for (ItemPedido item : listaDeItens) {
-            item.infoItemPedido();
+            item.infoItemPedido(); 
         }
     }
+
+    BigDecimal retornarValorTotal() {
+        BigDecimal valorTotal = BigDecimal.ZERO;
+        for (ItemPedido item : listaDeItens) {
+            valorTotal = valorTotal.add(item.calcularSubtotal());
+        }
+        return valorTotal;
+    }
 }   
+    

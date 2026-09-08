@@ -69,13 +69,15 @@ public class Main {
             }
         }
 
-
+        
         System.out.println();
         System.out.println("Estoque restante: " + produto1.getEstoque());
         System.out.println("Estoque restante: " + produto2.getEstoque());
 
         System.out.println("QUANTIDADE DE ITENS NO PEDIDO: " + pedido.getQuantidadeDeItens());
 
+        pedido.mostrarItem();
+        System.out.println("VALOR TOTAL DO PEDIDO: " + pedido.retornarValorTotal());
         scanner.close();
     }
 }
