@@ -21,4 +21,10 @@ public class Pedido {
     int getQuantidadeDeItens() {
         return (listaDeItens.size());
     }
+
+    void mostrarItem() {
+        for (ItemPedido item : listaDeItens) {
+            item.infoItemPedido();
+        }
+    }
 }   
