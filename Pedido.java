@@ -5,10 +5,10 @@ public class Pedido {
     Cliente cliente;
     ArrayList<ItemPedido> listaDeItens = new ArrayList<>();
     String idPedido;
-    String status;
+    StatusPedido status;
     String data;
 
-    public Pedido(Cliente cliente, String idPedido, String status, String data) {
+    public Pedido(Cliente cliente, String idPedido, StatusPedido status, String data) {
         this.cliente = cliente;
         this.idPedido = idPedido;
         this.status = status;

@@ -17,7 +17,7 @@ public class Main {
         Pedido pedido = new Pedido(
             cliente,
             "P001", 
-            "Em andamento", 
+            StatusPedido.PENDENTE, 
             "09/09/2026"
         );
 
