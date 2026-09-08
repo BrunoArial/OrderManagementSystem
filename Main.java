@@ -15,7 +15,7 @@ public class Main {
         ); 
 
         Pedido pedido = new Pedido(
-            cliente, 
+            cliente,
             "P001", 
             "Em andamento", 
             "09/09/2026"
@@ -78,6 +78,8 @@ public class Main {
 
         pedido.mostrarItem();
         System.out.println("VALOR TOTAL DO PEDIDO: " + pedido.retornarValorTotal());
+        System.out.println();
+        pedido.mostrarPedido();
         scanner.close();
     }
 }

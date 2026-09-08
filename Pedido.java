@@ -36,5 +36,12 @@ public class Pedido {
         }
         return valorTotal;
     }
+
+    void mostrarPedido() {
+        System.out.println("ID do pedido: " + this.idPedido);
+        System.out.println("Cliente: " + cliente.nome + " (email: " + cliente.email + ")" + " (id: " + cliente.idCliente + ")");
+        mostrarItem();
+        System.out.println("VALOR TOTAL: " + retornarValorTotal());
+    }
 }   
     
