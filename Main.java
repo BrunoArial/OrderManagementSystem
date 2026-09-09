@@ -47,7 +47,6 @@ public class Main {
                     System.out.print("Digite a quantidade desejada: ");
 
                     int quantidade = scanner.nextInt();
-                    produto.reduzirEstoque(quantidade);
 
                     ItemPedido itemPedido = new ItemPedido(produto, quantidade);
                     itemPedido.infoItemPedido();

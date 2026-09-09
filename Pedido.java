@@ -23,7 +23,17 @@ public class Pedido {
             throw new IllegalStateException ("Você só pode adicionar itens em pedidos pendentes.");
         }
 
+        item.getProduto().reduzirEstoque(item.getQuantidadePedido());
+
         listaDeItens.add(item);
+    }
+
+    void removerItens(ItemPedido item) {
+        if (this.status != StatusPedido.PENDENTE) {
+            throw new IllegalStateException ("Você só pode remover itens em pedidos pendentes.");
+        }
+
+        listaDeItens.remove(item);
     }
 
     int getQuantidadeDeItens() {
@@ -51,14 +61,16 @@ public class Pedido {
         System.out.println("VALOR TOTAL: " + retornarValorTotal());
         System.out.println("STATUS: " + this.status);
         
-        System.out.println("DATA: " + this.data.format(formatter));
+        System.out.println("DATA E HORÁRIO: " + this.data.format(formatter));
     }
 
     void confirmarPedido() {
         if (this.status != StatusPedido.PENDENTE) {
             throw new IllegalStateException("Apenas pedidos pendentes podem ser confirmados.");
         }
-
+        if (this.listaDeItens.isEmpty()) {
+            throw new IllegalStateException("Não é possível confirmar um pedido sem itens.");
+        }
         this.status = StatusPedido.CONFIRMADO;
     }
 

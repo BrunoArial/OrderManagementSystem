@@ -14,6 +14,14 @@ public class ItemPedido {
         return produto.getPreco()
                 .multiply(BigDecimal.valueOf(quantidadePedido));
     }
+    
+    Produto getProduto() {
+        return this.produto;
+    }
+
+    int getQuantidadePedido() {
+        return this.quantidadePedido;
+    }
 
     public void infoItemPedido() {
 
