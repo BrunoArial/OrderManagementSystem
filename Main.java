@@ -17,8 +17,7 @@ public class Main {
         Pedido pedido = new Pedido(
             cliente,
             "P001", 
-            StatusPedido.PENDENTE, 
-            "09/09/2026"
+            StatusPedido.PENDENTE
         );
 
         Produto produto1 = new Produto(
@@ -79,6 +78,10 @@ public class Main {
         pedido.mostrarItem();
         System.out.println("VALOR TOTAL DO PEDIDO: " + pedido.retornarValorTotal());
         System.out.println();
+        pedido.mostrarPedido();
+        System.out.println();
+        
+        pedido.confirmarPedido(); 
         pedido.mostrarPedido();
         scanner.close();
     }
