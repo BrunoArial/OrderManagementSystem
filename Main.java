@@ -40,12 +40,39 @@ public class Main {
 
         pedido.mostrarPedido();
 
-        pedido.confirmarPedido();
-
         System.out.println();
-        System.out.println("PEDIDO APÓS CONFIRMAÇÃO:");
-        pedido.mostrarPedido();
+        System.out.println("1 - Confirmar pedido");
+        System.out.println("2 - Cancelar pedido");
 
+        int opcao = 0;
+
+        do {
+            System.out.print("Escolha uma opção: ");
+
+        try {
+            opcao = scanner.nextInt();
+
+            if (opcao != 1 && opcao != 2) {
+                System.out.println("Opção inválida.");
+            }
+
+        } catch (InputMismatchException e) {
+            System.out.println("Digite um número inteiro.");
+            scanner.nextLine();
+            opcao = 0;
+        }
+
+        } while (opcao != 1 && opcao != 2);
+
+        if (opcao == 1) {
+            pedido.confirmarPedido();
+            pedido.mostrarPedido();
+        } 
+        else {
+            pedido.cancelarPedido();
+            pedido.mostrarPedido();
+        }
+            
         scanner.close();
     }
 
