@@ -7,49 +7,70 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        
+
         Cliente cliente = new Cliente(
-            "Bruno", 
-            "brunoarial@gmail.com", 
+            "Bruno",
+            "brunoarial@gmail.com",
             1
-        ); 
+        );
 
         Pedido pedido = new Pedido(
             cliente,
-            "P001", 
+            "P001",
             StatusPedido.PENDENTE
         );
 
         Produto produto1 = new Produto(
-                1,
-                "Produto A",
-                new BigDecimal("19.99"),
-                10
+            1,
+            "Produto A",
+            new BigDecimal("19.99"),
+            10
         );
+
         Produto produto2 = new Produto(
-                2,
-                "Produto B",
-                new BigDecimal("50.00"),
-                15
+            2,
+            "Produto B",
+            new BigDecimal("50.00"),
+            15
         );
 
-        produto1.mostrarProduto();
-        produto2.mostrarProduto();
         Produto[] produtos = {produto1, produto2};
-        boolean quantidadeValida = false;
+
+        adicionarProdutosAoPedido(scanner, pedido, produtos);
+
+        pedido.mostrarPedido();
+
+        pedido.confirmarPedido();
+
+        System.out.println();
+        System.out.println("PEDIDO APÓS CONFIRMAÇÃO:");
+        pedido.mostrarPedido();
+
+        scanner.close();
+    }
+
+    static void adicionarProdutosAoPedido(
+        Scanner scanner,
+        Pedido pedido,
+        Produto[] produtos
+    ) {
+
         for (Produto produto : produtos) {
-            quantidadeValida = false;
+
+            boolean quantidadeValida = false;
+
             while (!quantidadeValida) {
+
                 try {
-
                     System.out.println();
-                    System.out.println("ESTOQUE DISPONÍVEL: " + produto.getEstoque());
-                    System.out.print("Digite a quantidade desejada: ");
+                    produto.mostrarProduto();
 
+                    System.out.print("Digite a quantidade desejada: ");
                     int quantidade = scanner.nextInt();
 
-                    ItemPedido itemPedido = new ItemPedido(produto, quantidade);
-                    itemPedido.infoItemPedido();
+                    ItemPedido itemPedido =
+                        new ItemPedido(produto, quantidade);
+
                     pedido.adicionarItens(itemPedido);
 
                     quantidadeValida = true;
@@ -57,7 +78,6 @@ public class Main {
                 } catch (InputMismatchException e) {
 
                     System.out.println("Digite um número inteiro.");
-
                     scanner.nextLine();
 
                 } catch (IllegalArgumentException e) {
@@ -66,22 +86,5 @@ public class Main {
                 }
             }
         }
-
-        
-        System.out.println();
-        System.out.println("Estoque restante: " + produto1.getEstoque());
-        System.out.println("Estoque restante: " + produto2.getEstoque());
-
-        System.out.println("QUANTIDADE DE ITENS NO PEDIDO: " + pedido.getQuantidadeDeItens());
-
-        pedido.mostrarItem();
-        System.out.println("VALOR TOTAL DO PEDIDO: " + pedido.retornarValorTotal());
-        System.out.println();
-        pedido.mostrarPedido();
-        System.out.println();
-        
-        pedido.confirmarPedido(); 
-        pedido.mostrarPedido();
-        scanner.close();
     }
 }
