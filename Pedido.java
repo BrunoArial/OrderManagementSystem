@@ -33,8 +33,16 @@ public class Pedido {
             throw new IllegalStateException ("Você só pode remover itens em pedidos pendentes.");
         }
 
-        listaDeItens.remove(item);
-        item.getProduto().aumentarEstoque(getQuantidadeDeItens());
+        boolean removido = listaDeItens.remove(item);
+
+        if (removido) {
+            item.getProduto().aumentarEstoque(item.getQuantidadePedido());
+        }
+        else {
+            throw new IllegalArgumentException(
+                "O item não pertence a este pedido."
+            ); 
+        }
     }
 
     int getQuantidadeDeItens() {
@@ -78,6 +86,10 @@ public class Pedido {
     void cancelarPedido() {
         if (this.status == StatusPedido.CANCELADO) {
             throw new IllegalStateException("O pedido já está cancelado.");
+        }
+
+        for (ItemPedido item : listaDeItens) {
+            item.getProduto().aumentarEstoque(item.getQuantidadePedido());
         }
 
         this.status = StatusPedido.CANCELADO;
