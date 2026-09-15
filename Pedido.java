@@ -34,6 +34,7 @@ public class Pedido {
         }
 
         listaDeItens.remove(item);
+        item.getProduto().aumentarEstoque(getQuantidadeDeItens());
     }
 
     int getQuantidadeDeItens() {

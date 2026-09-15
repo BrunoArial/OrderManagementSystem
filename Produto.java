@@ -53,4 +53,13 @@ public class Produto {
 
         this.estoque = this.estoque - quantidade;
     }
+
+    public void aumentarEstoque(int quantidade) {
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException(
+                "A quantidade deve ser maior que zero."
+            );
+        }
+        this.estoque = this.estoque + quantidade;
+    }
 }
