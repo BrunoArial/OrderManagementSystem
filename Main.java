@@ -76,42 +76,56 @@ public class Main {
         scanner.close();
     }
 
-    static void adicionarProdutosAoPedido(
-        Scanner scanner,
-        Pedido pedido,
-        Produto[] produtos
-    ) {
+    static void adicionarProdutosAoPedido(Scanner scanner, Pedido pedido, Produto[] produtos) {
 
-        for (Produto produto : produtos) {
+    for (Produto produto : produtos) {
 
-            boolean quantidadeValida = false;
+        boolean quantidadeValida = false;
+        char resposta;
 
-            while (!quantidadeValida) {
+        System.out.println();
+        produto.mostrarProduto();
 
-                try {
-                    System.out.println();
-                    produto.mostrarProduto();
+        do {
+            System.out.println("Deseja adicionar ao pedido? (s/n)");
+            resposta = scanner.next().charAt(0);
 
-                    System.out.print("Digite a quantidade desejada: ");
-                    int quantidade = scanner.nextInt();
+            if (resposta != 's' && resposta != 'S'
+                    && resposta != 'n' && resposta != 'N') {
 
-                    ItemPedido itemPedido =
+                System.out.println("Digite apenas S ou N.");
+            }
+
+        } while (resposta != 's' && resposta != 'S'
+                && resposta != 'n' && resposta != 'N');
+
+        if (resposta == 'n' || resposta == 'N') {
+            continue;
+        }
+
+        while (!quantidadeValida) {
+
+            try {
+                System.out.print("Digite a quantidade desejada: ");
+                int quantidade = scanner.nextInt();
+
+                ItemPedido itemPedido =
                         new ItemPedido(produto, quantidade);
 
-                    pedido.adicionarItens(itemPedido);
+                pedido.adicionarItens(itemPedido);
 
-                    quantidadeValida = true;
+                quantidadeValida = true;
 
-                } catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
 
-                    System.out.println("Digite um número inteiro.");
-                    scanner.nextLine();
+                System.out.println("Digite um número inteiro.");
+                scanner.nextLine();
 
-                } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
 
-                    System.out.println("Erro: " + e.getMessage());
-                }
+                System.out.println("Erro: " + e.getMessage());
             }
         }
     }
 }
+    }
