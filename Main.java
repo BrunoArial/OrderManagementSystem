@@ -64,13 +64,18 @@ public class Main {
 
         } while (opcao != 1 && opcao != 2);
 
-        if (opcao == 1) {
-            pedido.confirmarPedido();
-            pedido.mostrarPedido();
-        } 
-        else {
-            pedido.cancelarPedido();
-            pedido.mostrarPedido();
+        try {
+            if (opcao == 1) {
+                pedido.confirmarPedido();
+                pedido.mostrarPedido();
+            } 
+            else {
+                pedido.cancelarPedido();
+                pedido.mostrarPedido();
+            }
+        }
+        catch (IllegalStateException e) {
+            System.out.println("Erro: " + e.getMessage());
         }
             
         scanner.close();
