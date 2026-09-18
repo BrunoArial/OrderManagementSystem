@@ -46,6 +46,7 @@ public class Main {
             System.out.println("1 - Confirmar pedido");
             System.out.println("2 - Cancelar pedido");
             System.out.println("3 - Ver pedido");
+            System.out.println("4 - Remover item");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -66,6 +67,11 @@ public class Main {
                 } else if (opcaoMenu == 3) {
 
                     pedido.mostrarPedido();
+
+                } else if (opcaoMenu == 4) {
+
+                    System.out.print("Digite o ID do produto que deseja remover: ");
+                    int idProduto = scanner.nextInt();
 
                 } else if (opcaoMenu == 0) {
 

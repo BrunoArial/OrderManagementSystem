@@ -39,10 +39,25 @@ public class Pedido {
             item.getProduto().aumentarEstoque(item.getQuantidadePedido());
         }
         else {
-            throw new IllegalArgumentException(
-                "O item não pertence a este pedido."
-            ); 
+            throw new IllegalArgumentException("O item não pertence a este pedido."); 
         }
+    }
+
+    void removerItensPorIDProduto (int idProduto) {
+        ItemPedido itemEncontrado = null;
+
+        for (ItemPedido item : listaDeItens) {
+            if(item.getProduto().getIdProduto() == idProduto) {
+                itemEncontrado = item;
+                break;
+            }
+        }
+
+        if (itemEncontrado == null) {
+            throw new IllegalArgumentException("O produto não pertence a este pedido.");
+        }
+
+        removerItens(itemEncontrado);
     }
 
     int getQuantidadeDeItens() {
