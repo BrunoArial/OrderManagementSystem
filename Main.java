@@ -38,99 +38,119 @@ public class Main {
 
         adicionarProdutosAoPedido(scanner, pedido, produtos);
 
-        pedido.mostrarPedido();
-
-        System.out.println();
-        System.out.println("1 - Confirmar pedido");
-        System.out.println("2 - Cancelar pedido");
-
-        int opcao = 0;
+        int opcaoMenu = -1;
 
         do {
+            System.out.println();
+            System.out.println("===== MENU =====");
+            System.out.println("1 - Confirmar pedido");
+            System.out.println("2 - Cancelar pedido");
+            System.out.println("3 - Ver pedido");
+            System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
 
-        try {
-            opcao = scanner.nextInt();
-
-            if (opcao != 1 && opcao != 2) {
-                System.out.println("Opção inválida.");
-            }
-
-        } catch (InputMismatchException e) {
-            System.out.println("Digite um número inteiro.");
-            scanner.nextLine();
-            opcao = 0;
-        }
-
-        } while (opcao != 1 && opcao != 2);
-
-        try {
-            if (opcao == 1) {
-                pedido.confirmarPedido();
-                pedido.mostrarPedido();
-            } 
-            else {
-                pedido.cancelarPedido();
-                pedido.mostrarPedido();
-            }
-        }
-        catch (IllegalStateException e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
-            
-        scanner.close();
-    }
-
-    static void adicionarProdutosAoPedido(Scanner scanner, Pedido pedido, Produto[] produtos) {
-
-    for (Produto produto : produtos) {
-
-        boolean quantidadeValida = false;
-        char resposta;
-
-        System.out.println();
-        produto.mostrarProduto();
-
-        do {
-            System.out.println("Deseja adicionar ao pedido? (s/n)");
-            resposta = scanner.next().charAt(0);
-
-            if (resposta != 's' && resposta != 'S'
-                    && resposta != 'n' && resposta != 'N') {
-
-                System.out.println("Digite apenas S ou N.");
-            }
-
-        } while (resposta != 's' && resposta != 'S'
-                && resposta != 'n' && resposta != 'N');
-
-        if (resposta == 'n' || resposta == 'N') {
-            continue;
-        }
-
-        while (!quantidadeValida) {
-
             try {
-                System.out.print("Digite a quantidade desejada: ");
-                int quantidade = scanner.nextInt();
 
-                ItemPedido itemPedido =
-                        new ItemPedido(produto, quantidade);
+                opcaoMenu = scanner.nextInt();
 
-                pedido.adicionarItens(itemPedido);
+                if (opcaoMenu == 1) {
 
-                quantidadeValida = true;
+                    pedido.confirmarPedido();
+                    System.out.println("Pedido confirmado com sucesso.");
+
+                } else if (opcaoMenu == 2) {
+
+                    pedido.cancelarPedido();
+                    System.out.println("Pedido cancelado com sucesso.");
+
+                } else if (opcaoMenu == 3) {
+
+                    pedido.mostrarPedido();
+
+                } else if (opcaoMenu == 0) {
+
+                    System.out.println("Programa encerrado.");
+
+                } else {
+
+                    System.out.println("Opção inválida.");
+                }
 
             } catch (InputMismatchException e) {
 
                 System.out.println("Digite um número inteiro.");
                 scanner.nextLine();
+                opcaoMenu = -1;
 
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalStateException e) {
 
                 System.out.println("Erro: " + e.getMessage());
             }
+
+        } while (opcaoMenu != 0);
+
+        scanner.close();
+    }
+
+    static void adicionarProdutosAoPedido(
+        Scanner scanner,
+        Pedido pedido,
+        Produto[] produtos
+    ) {
+
+        for (Produto produto : produtos) {
+
+            boolean quantidadeValida = false;
+            char resposta;
+
+            System.out.println();
+            produto.mostrarProduto();
+
+            do {
+                System.out.println("Deseja adicionar ao pedido? (s/n)");
+                resposta = scanner.next().charAt(0);
+
+                if (resposta != 's'
+                        && resposta != 'S'
+                        && resposta != 'n'
+                        && resposta != 'N') {
+
+                    System.out.println("Digite apenas S ou N.");
+                }
+
+            } while (resposta != 's'
+                    && resposta != 'S'
+                    && resposta != 'n'
+                    && resposta != 'N');
+
+            if (resposta == 'n' || resposta == 'N') {
+                continue;
+            }
+
+            while (!quantidadeValida) {
+
+                try {
+
+                    System.out.print("Digite a quantidade desejada: ");
+                    int quantidade = scanner.nextInt();
+
+                    ItemPedido itemPedido =
+                            new ItemPedido(produto, quantidade);
+
+                    pedido.adicionarItens(itemPedido);
+
+                    quantidadeValida = true;
+
+                } catch (InputMismatchException e) {
+
+                    System.out.println("Digite um número inteiro.");
+                    scanner.nextLine();
+
+                } catch (IllegalArgumentException e) {
+
+                    System.out.println("Erro: " + e.getMessage());
+                }
+            }
         }
     }
-}
-    }
+} 
