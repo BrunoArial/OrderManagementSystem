@@ -73,6 +73,9 @@ public class Main {
                     System.out.print("Digite o ID do produto que deseja remover: ");
                     int idProduto = scanner.nextInt();
 
+                    pedido.removerItensPorIDProduto(idProduto);
+                    System.out.println("Item removido com sucesso");
+
                 } else if (opcaoMenu == 0) {
 
                     System.out.println("Programa encerrado.");
@@ -83,13 +86,14 @@ public class Main {
                 }
 
             } catch (InputMismatchException e) {
-
                 System.out.println("Digite um número inteiro.");
                 scanner.nextLine();
                 opcaoMenu = -1;
 
             } catch (IllegalStateException e) {
+                System.out.println("Erro: " + e.getMessage());
 
+            } catch (IllegalArgumentException e) {
                 System.out.println("Erro: " + e.getMessage());
             }
 
