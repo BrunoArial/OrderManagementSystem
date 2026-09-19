@@ -21,10 +21,18 @@ public class ItemPedido {
         return this.quantidadePedido;
     }
 
+    void setQuantidadePedido(int quantidadePedido) {
+        this.quantidadePedido = quantidadePedido;
+    }
+
     public void infoItemPedido() {
 
         System.out.println("PRODUTO: " + produto.getNomeProduto());
         System.out.println("QUANTIDADE: " + quantidadePedido);
         System.out.println("SUBTOTAL: " + calcularSubtotal());
+    }
+
+    public void adicionarQuantidade(int quantidadePedidoADD) {
+        this.quantidadePedido += quantidadePedidoADD;
     }
 }

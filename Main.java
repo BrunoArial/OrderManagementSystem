@@ -47,6 +47,7 @@ public class Main {
             System.out.println("2 - Cancelar pedido");
             System.out.println("3 - Ver pedido");
             System.out.println("4 - Remover item");
+            System.out.println("5 - Adicionar item");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -71,10 +72,32 @@ public class Main {
                 } else if (opcaoMenu == 4) {
 
                     System.out.print("Digite o ID do produto que deseja remover: ");
-                    int idProduto = scanner.nextInt();
+                    int idProdutoREM = scanner.nextInt();
 
-                    pedido.removerItensPorIDProduto(idProduto);
+                    pedido.removerItensPorIDProduto(idProdutoREM);
                     System.out.println("Item removido com sucesso");
+
+                } else if (opcaoMenu == 5) {
+                    
+                    System.out.println("Produtos disponiveis: ");
+
+                    for (Produto produto : produtos) {
+                        produto.mostrarProduto();
+                    }
+
+                    System.out.print("Digite o ID do produto que deseja adicionar: ");
+                    int idProdutoADD = scanner.nextInt();
+
+                    Produto produtoSelecionado = buscarProdutoPorId(produtos, idProdutoADD);
+
+                    System.out.print("Digite a quantidade do produto que deseja: ");
+                    int quantidadeProdutoADD = scanner.nextInt();
+
+                    ItemPedido itemPedido = new ItemPedido(produtoSelecionado, quantidadeProdutoADD);
+
+                    pedido.adicionarItens(itemPedido);
+                    
+                    System.out.println("Produto adicionado no pedido com sucesso");
 
                 } else if (opcaoMenu == 0) {
 
@@ -102,11 +125,7 @@ public class Main {
         scanner.close();
     }
 
-    static void adicionarProdutosAoPedido(
-        Scanner scanner,
-        Pedido pedido,
-        Produto[] produtos
-    ) {
+    static void adicionarProdutosAoPedido(Scanner scanner, Pedido pedido, Produto[] produtos) {
 
         for (Produto produto : produtos) {
 
@@ -162,5 +181,16 @@ public class Main {
                 }
             }
         }
+    }
+
+    static Produto buscarProdutoPorId(Produto[] produtos, int idProduto) {
+
+    for (Produto produto : produtos) {
+        if (produto.getIdProduto() == idProduto) {
+            return produto;
+        }
+    }
+    throw new IllegalArgumentException("Produto não encontrado.");
+
     }
 } 

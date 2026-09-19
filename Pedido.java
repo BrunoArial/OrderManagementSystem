@@ -43,11 +43,11 @@ public class Pedido {
         }
     }
 
-    void removerItensPorIDProduto (int idProduto) {
+    void removerItensPorIDProduto (int idProdutoREM) {
         ItemPedido itemEncontrado = null;
 
         for (ItemPedido item : listaDeItens) {
-            if(item.getProduto().getIdProduto() == idProduto) {
+            if(item.getProduto().getIdProduto() == idProdutoREM) {
                 itemEncontrado = item;
                 break;
             }
