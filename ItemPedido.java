@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 
 public class ItemPedido {
-    Produto produto;
+    private Produto produto;
     private int quantidadePedido;
 
     public ItemPedido(Produto produto, int quantidadePedido) {
@@ -21,18 +21,10 @@ public class ItemPedido {
         return this.quantidadePedido;
     }
 
-    void setQuantidadePedido(int quantidadePedido) {
-        this.quantidadePedido = quantidadePedido;
-    }
-
     public void infoItemPedido() {
 
         System.out.println("PRODUTO: " + produto.getNomeProduto());
         System.out.println("QUANTIDADE: " + quantidadePedido);
         System.out.println("SUBTOTAL: " + calcularSubtotal());
-    }
-
-    public void adicionarQuantidade(int quantidadePedidoADD) {
-        this.quantidadePedido += quantidadePedidoADD;
     }
 }

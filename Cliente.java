@@ -1,7 +1,7 @@
 public class Cliente {
-    String nome;
-    String email;
-    int idCliente;
+    private String nome;
+    private String email;
+    private int idCliente;
 
 
     public Cliente(String nome, String email, int idCliente) {
@@ -10,10 +10,15 @@ public class Cliente {
         this.idCliente = idCliente;
     }
 
-    void mostrarCliente() {
-        System.out.println("DADOS DO CLIENTE:");
-        System.out.println("NOME:" + this.nome);
-        System.out.println("EMAIL: " + this.email);
-        System.out.println("ID: " + this.idCliente);
+    String getNome() {
+        return this.nome;
+    }
+
+    String getEmail() {
+        return this.email;
+    }
+
+    int getIdCliente() {
+        return this.idCliente;
     }
 }
