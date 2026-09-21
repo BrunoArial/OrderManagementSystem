@@ -17,7 +17,7 @@ public class ProdutoTest {
 
         produto.reduzirEstoque(3);
 
-        assertEquals(7, produto.getEstoque());
+        assertEquals(7, produto.getEstoque());  
     }
 
     @Test
@@ -51,4 +51,6 @@ public class ProdutoTest {
             () -> produto.reduzirEstoque(0)
         );
     }
+
+    
 }
